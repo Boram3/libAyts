@@ -1,0 +1,5 @@
+.*/
+*.auto.*
+submod/
+clinclude/
+build/
