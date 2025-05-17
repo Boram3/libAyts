@@ -1,4 +1,5 @@
 #ifndef Ayts_Cmt_h
+#define Ayts_Cmt_h
 
 #include <stddef.h>
 #include <stdint.h>
@@ -30,11 +31,11 @@ typedef struct Ayts_mCmtX {
 
 typedef union Ayts_Cmt {
   Ayts_mCmt mCmt;
-};
+} Ayts_Cmt;
 
 typedef union Ayts_CmtX {
   Ayts_mCmt mCmt;
   Ayts_mCmtX mCmtX;
-};
+} Ayts_CmtX;
 
 #endif
