@@ -38,11 +38,11 @@ target_link_libraries(Ayts	PUBLIC libAyts)
 add_custom_command(
 	TARGET Ayts 
 	POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy
-	${CMAKE_CURRENT_BINARY_DIR}/Ayts.js ${CMAKE_CURRENT_SOURCE_DIR}/Module/Ayts.auto.js
+	${CMAKE_CURRENT_BINARY_DIR}/Ayts.js ${CMAKE_CURRENT_SOURCE_DIR}/Module/Ayts.js
 )
 
 add_custom_command(
 	TARGET Ayts 
 	POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy
-	${CMAKE_CURRENT_BINARY_DIR}/Ayts.wasm ${CMAKE_CURRENT_SOURCE_DIR}/Module/Ayts.auto.wasm
+	${CMAKE_CURRENT_BINARY_DIR}/Ayts.wasm ${CMAKE_CURRENT_SOURCE_DIR}/Module/Ayts.wasm
 )
