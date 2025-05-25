@@ -1,5 +1,5 @@
 set(CMAKE_TOOLCHAIN_FILE "$ENV{EMROOT}/cmake/Modules/Platform/Emscripten.cmake")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}  -sEXPORT_ALL=1 -sLINKABLE=1")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -sEXPORT_ALL=1")
 
 cmake_minimum_required(VERSION 3.10)
 enable_testing()
@@ -28,6 +28,21 @@ target_include_directories(	incAyts INTERFACE	${ae2f__ae2fCL__CL-Ann-H__FETCHED}
 target_link_libraries(		libAyts PUBLIC 		incAyts)
 target_include_directories(	libAyts PUBLIC		${ae2f__ae2fCL__CL-Ann__FETCHED})
 
-target_compile_options(MMap PUBLIC  -sSIDE_MODULE=1)
-target_compile_options(Ann PUBLIC  -sSIDE_MODULE=1)
-target_compile_options(libAyts PUBLIC  -sSIDE_MODULE=1)
+# target_compile_options(MMap PRIVATE  -sSIDE_MODULE=1 -sEXPORT_KEEPALIVE=1)
+# target_compile_options(Ann PRIVATE  -sSIDE_MODULE=1 -sEXPORT_KEEPALIVE=1)
+# target_compile_options(libAyts PRIVATE  -sSIDE_MODULE=1 -sEXPORT_KEEPALIVE=1)
+
+
+add_executable(Ayts ${PROJECT_SOURCE_DIR}/dummy.c)
+target_link_libraries(Ayts	PUBLIC libAyts)
+add_custom_command(
+	TARGET Ayts 
+	POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy
+	${CMAKE_CURRENT_BINARY_DIR}/Ayts.js ${CMAKE_CURRENT_SOURCE_DIR}/Module/Ayts.auto.js
+)
+
+add_custom_command(
+	TARGET Ayts 
+	POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy
+	${CMAKE_CURRENT_BINARY_DIR}/Ayts.wasm ${CMAKE_CURRENT_SOURCE_DIR}/Module/Ayts.auto.wasm
+)
